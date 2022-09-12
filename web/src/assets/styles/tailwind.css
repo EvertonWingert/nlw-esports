@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  font-feature-settings: "cv03", "cv04", "cv11";
+}
