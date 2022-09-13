@@ -8,7 +8,7 @@
     "dev": "tsnd --exit-child src/server.ts",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node ./src/database/seed.ts"
   },
   "keywords": [],
   "author": "Everton Wingert",
