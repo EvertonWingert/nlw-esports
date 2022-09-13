@@ -45,31 +45,38 @@ const GAMES = [
 </script>
 
 <template>
-  <main class="max-w-7xl mx-auto flex flex-col items-center">
+  <main class="flex flex-col items-center mx-auto max-w-7xl">
     <img src="../assets/logo.svg" alt="NLW eSports logo" class="h-40" />
-    <h1 class="text-6xl text-white font-black mt-20">
+    <h1 class="mt-20 text-6xl font-black text-white">
       Seu
-      <span class="bg-nlw-radiant bg-clip-text text-transparent">duo</span> está
-      aqui.
+      <span
+        class="text-transparent bg-clip-text bg-gradient-to-r from-[#9572FC] via-[#43E7AD] to-[#E1D55D]"
+        >duo</span
+      >
+      está aqui.
     </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-16">
+    <div
+      class="grid w-full grid-cols-1 gap-2 mt-8 md:grid-cols-3 lg:grid-cols-6"
+    >
       <RouterLink
         v-for="game in GAMES"
         :key="game.id"
         :to="{ name: 'game', params: { id: game.id } }"
-        class="relative rounded-lg overflow-hidden"
+        class="relative overflow-hidden rounded-lg"
       >
         <GameCard :ads="game.ads" :name="game.name" :image="game.image" />
       </RouterLink>
     </div>
 
     <div
-      class="pt-1 self-stretch bg-nlw-radiant rounded-lg overflow-hidden mt-8"
+      class="w-full my-8 rounded-lg bg-gradient-to-r from-[#9572FC] via-[#43E7AD] to-[#E1D55D]"
     >
-      <div class="bg-[#2A2634] px-8 py-6 flex justify-between items-center">
-        <div>
-          <strong class="text-white font-black text-2xl block"
+      <div
+        class="flex flex-col md:flex-row w-full py-6 px-8 bg-[#2A2634] justify-between items-center text-white rounded-md text-base mt-1"
+      >
+        <div className="flex-grow flex flex-col">
+          <strong class="text-2xl font-black text-white"
             >Não encontrou seu duo?</strong
           >
           <span class="text-base text-zinc-400"

@@ -7,15 +7,17 @@ interface Props {
 defineProps<Props>();
 </script>
 <template>
-  <div class="relative rounded-lg overflow-hidden group">
+  <div class="relative overflow-hidden rounded-lg group">
     <img
       :src="image"
       :alt="`imagem do jogo ${name}`"
-      class="bg-cover bg-no-repeat group-hover:scale-110 transition-all duration-300"
+      class="transition-all duration-300 bg-no-repeat bg-cover group-hover:scale-110"
     />
-    <div class="w-full pt-16 pb-4 px-4 bg-game-gradient absolute bottom-0">
-      <strong class="text-base font-bold block text-white">{{ name }}</strong>
-      <span class="text-zinc-300 text-sm block mt-1">{{ ads }} anúncios</span>
+    <div
+      class="absolute bottom-0 flex flex-col w-full px-4 pt-16 pb-4 bg-gradient-to-t from-black/95 to-black/0"
+    >
+      <strong class="font-bold text-white">{{ name }}</strong>
+      <span class="text-sm text-zinc-300">{{ ads }} anúncios</span>
     </div>
   </div>
 </template>
