@@ -5,15 +5,28 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsnd src/server.ts"
+    "dev": "tsnd --exit-child src/server.ts",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "Everton Wingert",
   "license": "ISC",
   "devDependencies": {
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
+    "@vitest/coverage-c8": "^0.23.2",
     "express": "^4.18.1",
+    "prisma": "^4.3.1",
+    "supertest": "6.2.4",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^4.8.3"
+    "typescript": "^4.8.3",
+    "vitest": "^0.23.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.3.1",
+    "cors": "^2.8.5",
+    "zod": "^3.19.1"
   }
 }

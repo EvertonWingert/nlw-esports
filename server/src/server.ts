@@ -1,10 +1,19 @@
-import express from 'express'
+import express from "express";
+import cors from "cors";
+import { routes } from "./routes";
 
-const app = express()
-const router = express.Router()
+const app = express();
 
-router.use(express.json());
+//middlewares
+app.use(cors());
+app.use(express.json());
 
+//routes
+app.use(routes);
 
+//middlewares
 
-app.listen(333)
+//start
+app.listen(333);
+
+export default app;
