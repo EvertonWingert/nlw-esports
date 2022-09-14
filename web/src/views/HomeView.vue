@@ -17,7 +17,6 @@ const showCreateAdModal = ref(false);
 async function fetchGames() {
   isLoading.value = true;
   games.value = await gameService.list();
-  console.log(games.value);
   isLoading.value = false;
 }
 
@@ -60,6 +59,7 @@ onMounted(() => {
     <CreateAdModal
       :isOpen="showCreateAdModal"
       @close="showCreateAdModal = false"
+      :games="games"
     />
   </main>
 </template>

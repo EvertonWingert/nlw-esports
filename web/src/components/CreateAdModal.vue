@@ -11,9 +11,11 @@ import AppLabel from "@/components/Form/AppLabel.vue";
 import AppInput from "@/components/Form/AppInput.vue";
 import { reactive } from "vue";
 import InputDays from "./InputDays.vue";
+import type { Game } from "@/@types/game";
 
 interface Props {
   isOpen: boolean;
+  games: Game[];
 }
 
 defineProps<Props>();
@@ -24,8 +26,23 @@ function closeModal() {
 }
 
 const form = reactive({
-  weekDays: [] as number[],
+  weekDays: [],
+  game: "0",
+  name: "",
+  discord: "",
+  yearsPlaying: 0,
+  hoursStart: "00:00",
+  hoursEnd: "00:00",
+  voiceChannel: false,
 });
+
+function createAd() {
+  const payload = {
+    ...form,
+  };
+
+  console.log(payload, "payload");
+}
 </script>
 <template>
   <TransitionRoot as="template" :show="isOpen">
@@ -61,21 +78,32 @@ const form = reactive({
               <DialogTitle class="text-3xl font-black text-white"
                 >Publique um anúncio</DialogTitle
               >
-              <form class="mt-8">
+              <form class="mt-8" @submit.prevent="createAd">
                 <fieldset class="flex flex-col gap-4">
                   <div class="flex flex-col gap-2">
                     <AppLabel for="game">Qual o game?</AppLabel>
-                    <AppInput
-                      type="text"
+                    <select
                       id="game"
-                      placeholder="Selecione o game que deseja jogar"
-                    />
+                      name="game"
+                      v-model="form.game"
+                      class="p-4 text-sm text-white rounded-lg bg-zinc-900 placeholder:text-zinc-500 focus:border-violet-500 focus:ring-violet-500"
+                    >
+                      <option
+                        v-for="game in games"
+                        :key="game.id"
+                        :value="game.id"
+                      >
+                        {{ game.title }}
+                      </option>
+                    </select>
                   </div>
                   <div class="flex flex-col gap-2">
                     <AppLabel for="name">Seu nome (ou nickname)?</AppLabel>
                     <AppInput
                       type="text"
                       id="name"
+                      name="name"
+                      v-model="form.name"
                       placeholder="Como você gostaria de ser chamado?"
                     />
                   </div>
@@ -87,6 +115,8 @@ const form = reactive({
                       <AppInput
                         type="number"
                         id="yearsPlaying"
+                        name="yearsPlaying"
+                        v-model="form.yearsPlaying"
                         placeholder="Tudo bem ser zero"
                       />
                     </div>
@@ -95,6 +125,8 @@ const form = reactive({
                       <AppInput
                         type="text"
                         id="discord"
+                        name="discord"
+                        v-model="form.discord"
                         placeholder="usuário#0000"
                       />
                     </div>
@@ -103,28 +135,44 @@ const form = reactive({
                   <div class="flex gap-6">
                     <div class="flex flex-col gap-2">
                       <AppLabel for="weekDays">Quando costuma jogar?</AppLabel>
-                      <InputDays id="weekDays" v-model="form.weekDays" />
+                      <InputDays
+                        id="weekDays"
+                        name="weekDays"
+                        v-model="form.weekDays"
+                      />
                     </div>
                     <div class="flex flex-col flex-1 gap-2">
                       <AppLabel for="hoursStart">Qual horário do dia?</AppLabel>
                       <div class="grid grid-cols-2 gap-2">
                         <AppInput
                           id="hoursStart"
+                          name="hoursStart"
                           type="time"
+                          v-model="form.hoursStart"
                           placeholder="De"
                         />
-                        <AppInput id="hoursEnd" type="time" placeholder="Até" />
+                        <AppInput
+                          id="hoursEnd"
+                          name="hoursEnd"
+                          v-model="form.hoursEnd"
+                          type="time"
+                          placeholder="Até"
+                        />
                       </div>
                     </div>
                   </div>
 
                   <div class="flex items-center gap-2 mt-2 text-sm">
                     <input
-                      class="bg-transparent border rounded border-zinc-600 text-violet-500"
+                      class="bg-transparent border rounded border-zinc-600 text-violet-500 focus:ring-violet-500"
                       type="checkbox"
+                      name="voiceChannel"
                       id="voiceChannel"
+                      v-model="form.voiceChannel"
                     />
-                    Costumo me conectar ao chat de voz
+                    <AppLabel for="voiceChannel" class="font-normal"
+                      >Costumo me conectar ao chat de voz</AppLabel
+                    >
                   </div>
 
                   <footer class="flex justify-end gap-4 mt-4">

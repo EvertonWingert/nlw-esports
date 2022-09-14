@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AppButton from "@/components/AppButton.vue";
 interface Props {
   modelValue: number[];
 }
@@ -24,54 +23,82 @@ function isDayActive(day: number) {
 </script>
 <template>
   <div class="grid grid-cols-4 gap-2">
-    <AppButton
+    <button
       @click="setDayActive(0)"
       title="Doming"
       type="button"
-      :variant="isDayActive(0) ? 'primary' : 'secondary'"
-      >D</AppButton
+      :class="[
+        isDayActive(0) ? 'bg-violet-500' : 'bg-zinc-900',
+        'w-10 h-10 rounded',
+      ]"
     >
-    <AppButton
+      D
+    </button>
+    <button
       @click="setDayActive(1)"
       title="Segunda"
       type="button"
-      :variant="isDayActive(1) ? 'primary' : 'secondary'"
-      >S</AppButton
+      :class="[
+        isDayActive(1) ? 'bg-violet-500' : 'bg-zinc-900',
+        'w-10 h-10 rounded',
+      ]"
     >
-    <AppButton
+      S
+    </button>
+    <button
       @click="setDayActive(2)"
       title="Terça"
       type="button"
-      :variant="isDayActive(2) ? 'primary' : 'secondary'"
-      >T</AppButton
+      :class="[
+        isDayActive(2) ? 'bg-violet-500' : 'bg-zinc-900',
+        'w-10 h-10 rounded',
+      ]"
     >
-    <AppButton
+      T
+    </button>
+    <button
       @click="setDayActive(3)"
       title="Quarta"
       type="button"
-      :variant="isDayActive(3) ? 'primary' : 'secondary'"
-      >Q
-    </AppButton>
-    <AppButton
+      :class="[
+        isDayActive(3) ? 'bg-violet-500' : 'bg-zinc-900',
+        'w-10 h-10 rounded',
+      ]"
+    >
+      Q
+    </button>
+    <button
       @click="setDayActive(4)"
       title="Quinta"
       type="button"
-      :variant="isDayActive(4) ? 'primary' : 'secondary'"
-      >Q</AppButton
+      :class="[
+        isDayActive(4) ? 'bg-violet-500' : 'bg-zinc-900',
+        'w-10 h-10 rounded',
+      ]"
     >
-    <AppButton
+      Q
+    </button>
+    <button
       @click="setDayActive(5)"
       title="Sexta"
       type="button"
-      :variant="isDayActive(5) ? 'primary' : 'secondary'"
-      >S</AppButton
+      :class="[
+        isDayActive(5) ? 'bg-violet-500' : 'bg-zinc-900',
+        'w-10 h-10 rounded',
+      ]"
     >
-    <AppButton
+      S
+    </button>
+    <button
       @click="setDayActive(6)"
       title="Sábado"
       type="button"
-      :variant="isDayActive(6) ? 'primary' : 'secondary'"
-      >S</AppButton
+      :class="[
+        isDayActive(6) ? 'bg-violet-500' : 'bg-zinc-900',
+        'w-10 h-10 rounded',
+      ]"
     >
+      S
+    </button>
   </div>
 </template>
