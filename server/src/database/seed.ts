@@ -11,13 +11,13 @@ const load = async () => {
 		await prisma.game.create({
 			data: {
 				title: "League of Legends",
-				bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/21779-188x250.jpg",
+				bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/21779-285x380.jpg",
 			},
 		});
 		await prisma.game.create({
 			data: {
 				title: "CS:GO",
-				bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/32399_IGDB-188x250.jpg",
+				bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/32399_IGDB-285x380.jpg",
 			},
 		});
 		await prisma.game.create({
@@ -29,7 +29,7 @@ const load = async () => {
 		await prisma.game.create({
 			data: {
 				title: "Valorant",
-				bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/21779-188x250.jpg",
+				bannerUrl: "https://static-cdn.jtvnw.net/ttv-boxart/21779-285x380.jpg",
 			},
 		});
 		await prisma.game.create({
