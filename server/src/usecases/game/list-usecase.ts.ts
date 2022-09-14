@@ -5,7 +5,11 @@ export class ListGamesUseCase {
 	async execute(): Promise<Game[]> {
 		const games = await prisma.game.findMany({
 			include: {
-				ads: true,
+				_count: {
+					select: {
+						ads: true,
+					},
+				},
 			},
 		});
 

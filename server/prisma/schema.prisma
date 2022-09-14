@@ -6,16 +6,16 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
 model Game {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
   title     String
-  bannerUrl String
+  bannerUrl String   @map("banner_url")
   ads       Ad[]
 
   @@map("games")
@@ -23,16 +23,16 @@ model Game {
 
 model Ad {
   id              String   @id @default(uuid())
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
   name            String
-  yearsPlayed     Int
+  yearsPlaying    Int      @map("years_playing")
   discord         String
-  weekDays        String
-  hoursStart      Int
-  hoursEnd        Int
-  useVoiceChannel Boolean  @default(false)
-  gameId          Int
+  weekDays        String   @map("week_days")
+  hoursStart      Int      @map("hours_start")
+  hoursEnd        Int      @map("hours_end")
+  useVoiceChannel Boolean  @default(false) @map("use_voice_channel")
+  gameId          Int      @map("game_id")
   game            Game     @relation(fields: [gameId], references: [id])
 
   @@map("ads")

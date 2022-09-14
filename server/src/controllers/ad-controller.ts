@@ -24,7 +24,7 @@ export class AdController {
 		const ad = await createAdUseCase.execute({
 			gameId,
 			name: body.name,
-			yearsPlayed: body.yearsPlayed,
+			yearsPlaying: body.yearsPlaying,
 			discord: body.discord,
 			weekDays: body.weekDays,
 			hoursStart: body.hoursStart,

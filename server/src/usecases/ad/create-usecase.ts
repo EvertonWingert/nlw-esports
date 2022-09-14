@@ -7,7 +7,7 @@ export class CreateAdUseCase {
 	async execute({
 		gameId,
 		name,
-		yearsPlayed,
+		yearsPlaying,
 		discord,
 		weekDays,
 		hoursStart,
@@ -26,9 +26,9 @@ export class CreateAdUseCase {
 		const ad = await prisma.ad.create({
 			data: {
 				name: name,
-				yearsPlayed: yearsPlayed,
+				yearsPlaying: yearsPlaying,
 				discord: discord,
-				weekDays: weekDays,
+				weekDays: weekDays.join(","),
 				hoursStart: convertHoursStringToMinutes(hoursStart),
 				hoursEnd: convertHoursStringToMinutes(hoursEnd),
 				useVoiceChannel: useVoiceChannel,
@@ -42,7 +42,7 @@ export class CreateAdUseCase {
 
 		return {
 			name: ad.name,
-			yearsPlayed: ad.yearsPlayed,
+			yearsPlaying: ad.yearsPlaying,
 			weekDays: ad.weekDays.split(","),
 			hoursStart: convertMinutesToHourString(ad.hoursStart),
 			hoursEnd: convertMinutesToHourString(ad.hoursEnd),
@@ -54,9 +54,9 @@ export class CreateAdUseCase {
 type Input = {
 	gameId: string;
 	name: string;
-	yearsPlayed: number;
+	yearsPlaying: number;
 	discord: string;
-	weekDays: string;
+	weekDays: number[];
 	hoursStart: string;
 	hoursEnd: string;
 	useVoiceChannel: boolean;
@@ -64,7 +64,7 @@ type Input = {
 
 type Output = {
 	name: string;
-	yearsPlayed: number;
+	yearsPlaying: number;
 	weekDays: string[];
 	hoursStart: string;
 	hoursEnd: string;

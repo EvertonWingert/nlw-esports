@@ -5,11 +5,7 @@ import { routes } from "./routes";
 const app = express();
 
 //middlewares
-app.use(
-	cors({
-		origin: "nlw-esports-web-zeta.vercel.app",
-	})
-);
+app.use(cors());
 app.use(express.json());
 
 //routes

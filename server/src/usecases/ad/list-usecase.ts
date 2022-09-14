@@ -19,7 +19,7 @@ export class ListAdsUseCase {
 		return game.ads.map((ad) => {
 			return {
 				name: ad.name,
-				yearsPlayed: ad.yearsPlayed,
+				yearsPlaying: ad.yearsPlaying,
 				weekDays: ad.weekDays.split(","),
 				hoursStart: convertMinutesToHourString(ad.hoursStart),
 				hoursEnd: convertMinutesToHourString(ad.hoursEnd),
@@ -35,7 +35,7 @@ type Input = {
 
 type Output = {
 	name: string;
-	yearsPlayed: number;
+	yearsPlaying: number;
 	weekDays: string[];
 	hoursStart: string;
 	hoursEnd: string;
