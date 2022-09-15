@@ -9,13 +9,14 @@ import {
 import AppButton from "./AppButton.vue";
 import AppLabel from "@/components/Form/AppLabel.vue";
 import AppInput from "@/components/Form/AppInput.vue";
-import { reactive } from "vue";
-import InputDays from "./InputDays.vue";
-import type { Game } from "@/@types/game";
+import InputDays from "@/components/InputDays.vue";
+import { reactive, computed } from "vue";
+
+import { useGameStore } from "@/store/game";
+import { AdService } from "@/services/ad-service";
 
 interface Props {
   isOpen: boolean;
-  games: Game[];
 }
 
 defineProps<Props>();
@@ -25,23 +26,27 @@ function closeModal() {
   emit("close");
 }
 
+const store = useGameStore();
+const games = computed(() => store.games);
+
 const form = reactive({
   weekDays: [],
-  game: "0",
+  game: 0,
   name: "",
   discord: "",
   yearsPlaying: 0,
   hoursStart: "00:00",
   hoursEnd: "00:00",
-  voiceChannel: false,
+  useVoiceChannel: false,
 });
 
-function createAd() {
+async function createAd() {
+  const adService = new AdService();
   const payload = {
     ...form,
   };
 
-  console.log(payload, "payload");
+  await adService.create(form.game, payload);
 }
 </script>
 <template>
@@ -81,11 +86,11 @@ function createAd() {
               <form class="mt-8" @submit.prevent="createAd">
                 <fieldset class="flex flex-col gap-4">
                   <div class="flex flex-col gap-2">
-                    <AppLabel for="game">Qual o game?</AppLabel>
+                    <AppLabel for="game">Qual game?</AppLabel>
                     <select
+                      v-model="form.game"
                       id="game"
                       name="game"
-                      v-model="form.game"
                       class="p-4 text-sm text-white rounded-lg bg-zinc-900 placeholder:text-zinc-500 focus:border-violet-500 focus:ring-violet-500"
                     >
                       <option
@@ -116,7 +121,7 @@ function createAd() {
                         type="number"
                         id="yearsPlaying"
                         name="yearsPlaying"
-                        v-model="form.yearsPlaying"
+                        v-model.number="form.yearsPlaying"
                         placeholder="Tudo bem ser zero"
                       />
                     </div>
@@ -168,7 +173,7 @@ function createAd() {
                       type="checkbox"
                       name="voiceChannel"
                       id="voiceChannel"
-                      v-model="form.voiceChannel"
+                      v-model="form.useVoiceChannel"
                     />
                     <AppLabel for="voiceChannel" class="font-normal"
                       >Costumo me conectar ao chat de voz</AppLabel

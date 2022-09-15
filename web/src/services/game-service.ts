@@ -8,7 +8,7 @@ export class GameService {
     return await response.json();
   }
 
-  async show(id: string) {
+  async show(id: number) {
     const response = await fetch(`${this.baseUrl}/games/${id}`);
     return await response.json();
   }
