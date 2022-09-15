@@ -18,6 +18,7 @@ export class ListAdsUseCase {
 
 		return game.ads.map((ad) => {
 			return {
+				id: ad.id,
 				name: ad.name,
 				yearsPlaying: ad.yearsPlaying,
 				weekDays: ad.weekDays.split(","),
@@ -34,6 +35,7 @@ type Input = {
 };
 
 type Output = {
+	id: string;
 	name: string;
 	yearsPlaying: number;
 	weekDays: string[];

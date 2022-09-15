@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { routes } from "./routes";
+import { errorMiddleware } from "./middlewares/error-middleware";
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(express.json());
 app.use(routes);
 
 //middlewares
-
+app.use(errorMiddleware);
 //start
 app.listen(333);
 

@@ -18,7 +18,11 @@ export class AdController {
 		const { gameId } = request.params;
 		const body: createAdSchema = request.body;
 
-		createAdSchema.parse(body);
+		try {
+			await createAdSchema.parseAsync(body);
+		} catch (error) {
+			return response.status(400).json(error);
+		}
 
 		const createAdUseCase = new CreateAdUseCase();
 		const ad = await createAdUseCase.execute({
