@@ -9,9 +9,14 @@ export const useGameStore = defineStore("game", () => {
   const isLoading = ref(false);
 
   async function fetchGames() {
-    isLoading.value = true;
-    games.value = await gameService.list();
-    isLoading.value = false;
+    try {
+      isLoading.value = true;
+      games.value = await gameService.list();
+    } catch (e) {
+      alert('Falha ao buscar jogos')
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   return { games, fetchGames, isLoading };
