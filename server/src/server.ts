@@ -6,7 +6,9 @@ import { errorMiddleware } from "./middlewares/error-middleware";
 const app = express();
 
 //middlewares
-app.use(cors());
+app.use(cors({
+    origin: "https://nlw-esports-web-zeta.vercel.app",
+}));
 app.use(express.json());
 
 //routes
