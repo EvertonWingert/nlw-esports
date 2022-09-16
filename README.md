@@ -1,5 +1,5 @@
 # nlw-esports
- 
+
 <img src=".github/capa.png" alt="home" />
 
 <h2 align="center">
@@ -17,7 +17,6 @@
 
 Nesse desafio, foi desenvolvido uma de jogos
 
-
 ### 📸 Imagens
 
 **Página inicial**
@@ -34,6 +33,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 -   [TypeScript](https://www.typescriptlang.org/pt/)
 -   [Vite](https://vitejs.dev/)
 -   [Node](https://nodejs.org/en/)
+-   [Prisma](https://www.prisma.io/)
 
 ## 📝 Licença
 
