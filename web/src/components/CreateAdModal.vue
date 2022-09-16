@@ -10,7 +10,7 @@ import AppButton from "./AppButton.vue";
 import AppLabel from "@/components/Form/AppLabel.vue";
 import AppInput from "@/components/Form/AppInput.vue";
 import InputDays from "@/components/InputDays.vue";
-import { reactive, computed } from "vue";
+import { reactive, computed, ref } from "vue";
 
 import { useGameStore } from "@/store/game";
 import { AdService } from "@/services/ad-service";
@@ -20,14 +20,12 @@ interface Props {
 }
 
 defineProps<Props>();
+
 const emit = defineEmits(["close"]);
-
-function closeModal() {
-  emit("close");
-}
-
 const store = useGameStore();
+
 const games = computed(() => store.games);
+const isLoading = ref(false);
 
 const form = reactive({
   weekDays: [],
@@ -46,7 +44,20 @@ async function createAd() {
     ...form,
   };
 
-  await adService.create(form.game, payload);
+  isLoading.value = true;
+  try {
+    const ad = await adService.create(form.game, payload);
+    store.createAd(form.game, ad);
+    emit("close");
+  } catch (e) {
+    alert("Erro ao criar anúncio");
+  } finally {
+    isLoading.value = false;
+  }
+}
+
+function closeModal() {
+  emit("close");
 }
 </script>
 <template>
@@ -84,7 +95,7 @@ async function createAd() {
                 >Publique um anúncio</DialogTitle
               >
               <form class="mt-8" @submit.prevent="createAd">
-                <fieldset class="flex flex-col gap-4">
+                <fieldset class="flex flex-col gap-4" :disabled="isLoading">
                   <div class="flex flex-col gap-2">
                     <AppLabel for="game">Qual game?</AppLabel>
                     <select

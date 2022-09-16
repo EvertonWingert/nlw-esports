@@ -8,6 +8,6 @@ defineEmits(["update:modelValue"]);
     @input="
       $emit('update:modelValue', ($event.target as HTMLInputElement).value)
     "
-    class="p-4 text-sm text-white rounded-lg bg-zinc-900 placeholder:text-zinc-500 focus:border-violet-500 focus:ring-violet-500"
+    class="p-4 text-sm text-white rounded-lg bg-zinc-900 placeholder:text-zinc-500 focus:border-violet-500 focus:ring-violet-500 disabled:opacity-50"
   />
 </template>

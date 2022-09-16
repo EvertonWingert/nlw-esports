@@ -18,7 +18,7 @@ const getVariant = computed(() => VARIANTS[props.variant]);
 
 const css = computed(
   () =>
-    `text-white inline-flex px-4 py-3 rounded active:scale-95 transition-all duration-300 ${getVariant.value}`
+    `text-white inline-flex px-4 py-3 rounded active:scale-95 transition-all duration-300 disabled:opacity-50 ${getVariant.value}`
 );
 </script>
 <template>

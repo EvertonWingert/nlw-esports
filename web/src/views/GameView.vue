@@ -1,37 +1,28 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import type { Game } from "@/@types/game";
-import { GameService } from "@/services/game-service";
-import { AdService } from "@/services/ad-service";
-import type { Ad } from "@/@types/ad";
+import { ref } from "vue";
 import AdCard from "@/components/AdCard.vue";
+import { useGameStore } from "@/store/game";
+import { computed } from "vue";
 
 interface Props {
-  id: number;
+  id: string;
 }
 
 const props = defineProps<Props>();
+const store = useGameStore();
 
-const gameService = new GameService();
-const adService = new AdService();
-const game = ref<Game | undefined>();
-const ads = ref<Ad[]>();
 const isLoading = ref(true);
 
-async function fetchGame(id: number) {
-  const response = await gameService.show(id);
-  game.value = response.game;
-}
-async function fetchAds(id: number) {
-  const response = await adService.list(id);
-  ads.value = response;
+const game = computed(() => store.currentGame);
+const ads = computed(() => store.ads);
+
+async function fetchData() {
+  await store.fetchGame(Number(props.id));
+  await store.fetchAds(Number(props.id));
+  isLoading.value = false;
 }
 
-onMounted(() => {
-  Promise.all([fetchGame(props.id), fetchAds(props.id)]).finally(() => {
-    isLoading.value = false;
-  });
-});
+fetchData();
 </script>
 
 <template>

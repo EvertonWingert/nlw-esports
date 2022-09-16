@@ -8,7 +8,6 @@ import { useGameStore } from "@/store/game";
 const showCreateAdModal = ref(false);
 
 const store = useGameStore();
-
 await store.fetchGames();
 </script>
 <template>
@@ -18,7 +17,6 @@ await store.fetchGames();
         <div class="min-h-[600px] w-full pt-20">
           <RouterView />
         </div>
-
         <CreateAdBanner @create-ad="showCreateAdModal = true" />
       </main>
       <CreateAdModal
