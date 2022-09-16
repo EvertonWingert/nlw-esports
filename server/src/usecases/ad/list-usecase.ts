@@ -21,7 +21,7 @@ export class ListAdsUseCase {
 				id: ad.id,
 				name: ad.name,
 				yearsPlaying: ad.yearsPlaying,
-				weekDays: ad.weekDays.split(","),
+				weekDays: ad.weekDays.split(",").map((weekDay) => Number(weekDay)),
 				hoursStart: convertMinutesToHourString(ad.hoursStart),
 				hoursEnd: convertMinutesToHourString(ad.hoursEnd),
 				useVoiceChannel: ad.useVoiceChannel,
@@ -38,7 +38,7 @@ type Output = {
 	id: string;
 	name: string;
 	yearsPlaying: number;
-	weekDays: string[];
+	weekDays: number[];
 	hoursStart: string;
 	hoursEnd: string;
 	useVoiceChannel: boolean;
