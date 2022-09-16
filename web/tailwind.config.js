@@ -9,7 +9,7 @@ module.exports = {
         sans: ["inter var", ...defaultTheme.fontFamily.sans],
       },
       backgroundImage: {
-        galaxy: "url('images/background.jpg')",
+        galaxy: "url('/src/assets/background.jpg')",
       },
     },
   },
