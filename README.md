@@ -74,7 +74,7 @@ $ npm run dev
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 -   [VueJs](https://vuejs.org/)
--   [Tailwind][https://https://tailwindcss.com/]
+-   [Tailwind](https://https://tailwindcss.com/)
 -   [TypeScript](https://www.typescriptlang.org/pt/)
 -   [Vite](https://vitejs.dev/)
 -   [Node](https://nodejs.org/en/)
